@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base URL from environment
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://evangadi-forum-backend-4c49.onrender.com";
 
 const api = axios.create({
   baseURL: BASE_URL,
