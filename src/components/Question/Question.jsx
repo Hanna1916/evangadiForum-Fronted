@@ -1,43 +1,57 @@
+import React from "react";
+import { FaUserCircle, FaChevronRight } from "react-icons/fa";
 import styles from "./Question.module.css";
 import { useNavigate } from "react-router-dom";
 
 const Question = ({ question }) => {
   const navigate = useNavigate();
 
-  const handleOpenQuestion = () => {
-    navigate(`/questions/${question.question_id}`);
+  // Resolve id (some code uses `id`, others `question_id`)
+  const id = question?.question_id || question?.id;
+
+  console.log("🔍 Question component - question data:", question);
+  console.log("🔍 Question component - resolved id:", id);
+
+  const handleClick = () => {
+    console.log("🖱️ Question clicked!");
+    console.log("🖱️ Question ID:", id);
+    console.log("🖱️ Question title:", question?.title);
+
+    if (!id) {
+      console.log("❌ No ID found, cannot navigate");
+      return;
+    }
+
+    console.log("📍 Navigating to:", `/answer/${id}`);
+    navigate(`/answer/${id}`); // ✅ Go to Answer Page
   };
 
-  // Avatar fallback (optional)
-  const avatarUrl =
-    question?.user_avatar || "https://www.gravatar.com/avatar/?d=mp"; // fallback avatar
+  // Resolve username from several possible shapes the API may return
+  const username =
+    question?.username ||
+    question?.user?.username ||
+    question?.user_name ||
+    "Anonymous";
 
-  // Username from API
-  const username = question?.user_name || "Anonymous";
+  // Resolve avatar from possible locations
+  const avatar = question?.user?.avatar || question?.user_avatar || null;
 
   return (
-    <div
-      className={styles.questionCard}
-      onClick={handleOpenQuestion}
-      title="View question details"
-    >
-      <div className={styles.userInfo}>
-        <img src={avatarUrl} alt={username} className={styles.avatar} />
-        <span className={styles.username}>{username}</span>
+    <div className={styles.card} onClick={handleClick} role="button">
+      <div className={styles.left}>
+        <div className={styles.userinfo}>
+          {avatar ? (
+            <img src={avatar} alt={username} className={styles.avatar} />
+          ) : (
+            <FaUserCircle className={styles.avatar} />
+          )}
+          <p className={styles.username}>{username}</p>
+        </div>
+        <div className={styles.details}>
+          <p className={styles.title}>{question?.title}</p>
+        </div>
       </div>
-
-      <div className={styles.questionContent}>
-        <p className={styles.questionText}>{question.title}</p>
-        <button
-          className={styles.viewButton}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleOpenQuestion();
-          }}
-        >
-          View
-        </button>
-      </div>
+      <FaChevronRight className={styles.arrow} />
     </div>
   );
 };

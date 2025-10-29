@@ -1,60 +1,57 @@
 .answerPage {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fefefe;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 10px 18px;
+  font-family: "Poppins", sans-serif;
+  background-color: transparent;
 }
 
 /* Question section */
 .questionSection {
-  background-color: #e6f0ff;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 35px;
-  position: relative;
+  padding: 6px 0 18px 0;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-top: 50px;
 }
 
 .questionTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #003366;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 8px 0 6px 0;
 }
 
 .questionType {
-  font-size: 1rem;
-  color: #336699;
-  margin-bottom: 10px;
-  font-weight: 500;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
 }
 
 .questionContent {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #333;
+  font-size: 14px;
+  color: #444;
 }
 
 /* Answers section */
 .answersSection {
-  margin-bottom: 30px;
+  margin: 18px 0 30px 0;
 }
 
 .answersTitle {
-  font-size: 1.4rem;
+  display: inline-block;
+  color: black;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #007bff;
+  margin-bottom: 5px;
 }
 
 /* Individual answer */
 .answerItem {
   display: flex;
-  gap: 15px;
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
+  gap: 18px;
+  padding: 18px 8px;
+  border-bottom: 1px solid #eaeaea;
   align-items: flex-start;
 }
 
@@ -62,20 +59,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80px;
+  width: 100px;
   flex-shrink: 0;
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   object-fit: cover;
 }
 
+.avatarIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 26px;
+}
+
+.avatarIcon {
+  font-size: 56px;
+  color: #9b9b9b;
+  margin-bottom: 8px;
+}
+
 .username {
-  font-size: 0.9rem;
+  font-size: 12px;
   font-weight: 600;
   color: #333;
   text-align: center;
@@ -84,58 +99,67 @@
 /* Answer content */
 .answerContent {
   flex: 1;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.6;
-  color: #444;
-  background-color: #f7f9fc;
-  padding: 12px 15px;
-  border-radius: 10px;
-  transition: background-color 0.2s;
+  color: #333;
 }
 
-.answerContent:hover {
-  background-color: #eef4ff;
+/* make the answer body look like a grey rounded box and scroll if long */
+.answerBodyBox {
+  background: #f5f6f8;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e6e8eb;
+  max-height: 140px;
+  overflow-y: auto;
 }
 
 /* Post answer section */
 .postAnswer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 25px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.postCard {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(27, 46, 103, 0.06);
+}
+
+.postCard h3 {
+  text-align: center;
+  margin: 0 0 8px 0;
+}
+
+.postCard .goLink {
+  text-align: center;
+  font-size: 12px;
+  color: #6b6b6b;
+  margin-bottom: 12px;
 }
 
 .answerInput {
   width: 100%;
   min-height: 120px;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  padding: 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
   resize: vertical;
-  outline: none;
-  transition: border 0.2s;
-}
-
-.answerInput:focus {
-  border-color: #007bff;
 }
 
 .postButton {
-  align-self: flex-end;
-  padding: 10px 22px;
-  background-color: #007bff;
-  color: #fff;
-  font-weight: 600;
-  border: none;
+  margin-top: 12px;
+  display: inline-block;
+  padding: 10px 18px;
+  background: #4b6bfb;
+  color: white;
   border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-.postButton:hover {
-  background-color: #0056b3;
-  transform: translateY(-1px);
+  border: none;
 }
 
 /* Responsive design */

@@ -6,7 +6,6 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 const api = axios.create({
   baseURL: BASE_URL,
   headers: { "Content-Type": "application/json" },
- 
 });
 
 // Attach JWT token
@@ -19,18 +18,19 @@ export const setAuthToken = (token) => {
 };
 
 // ===== Auth APIs =====
-export const checkUser = () => api.get("/user/checkUser");
-export const signupUser = (data) => api.post("/user/register", data);
-export const loginUser = (data) => api.post("/user/login", data);
+export const checkUser = () => api.get("/api/user/checkUser");
+export const signupUser = (data) => api.post("/api/user/register", data);
+export const loginUser = (data) => api.post("/api/user/login", data);
 
 // ===== Questions =====
-export const getAllQuestions = () => api.get("/question");
+export const getAllQuestions = () => api.get("/api/question/");
 export const getSingleQuestion = (question_id) =>
-  api.get(`/question/${question_id}`);
-export const postQuestion = (data) => api.post("/question", data);
+  api.get(`/api/question/${question_id}`);
+export const postQuestion = (data) => api.post("/api/question/", data);
 
 // ===== Answers =====
-export const getAnswers = (question_id) => api.get(`/answer/${question_id}`);
-export const postAnswer = (data) => api.post("/answer", data);
+export const getAnswers = (question_id) =>
+  api.get(`/api/answer/${question_id}`);
+export const postAnswer = (data) => api.post("/api/answer/", data);
 
 export default api;

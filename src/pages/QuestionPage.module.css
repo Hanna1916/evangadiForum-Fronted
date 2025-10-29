@@ -15,17 +15,16 @@
   padding: 15px 20px;
   border-radius: 10px;
   margin-bottom: 20px;
- 
 }
 
 .stepsSection ul {
-  list-style: disc;
-  margin-left: 20px;
-}
-.stepsSection ul li{
-  text-decoration: none !important;
+  list-style: none;
+  margin-left: 0;
 }
 
+.stepsSection ul li {
+  text-decoration: none;
+}
 .postSection {
   background-color: #fff;
   padding: 20px;

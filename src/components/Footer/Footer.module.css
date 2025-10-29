@@ -1,136 +1,104 @@
-/* Reset box-sizing */
-* {
-  box-sizing: border-box;
+/* src/components/Footer/Footer.module.css */
+
+/* 2. Styling: Base Footer Container */
+.footer {
+  background-color: #3b4249; /* Dark background color from screenshot */
+  color: #fff; /* White text color */
+  padding: 40px 20px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Footer container fixed at bottom */
-footer {
-  width: 100vw; /* makes it full viewport width */
-  background-color: #0a0a23;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  text-align: center;
-}
-
-/* Inner content container with max width and horizontal gaps */
-.footerContainer {
+/* Container for all content, uses flexbox for columns */
+.footerContent {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  max-width: 900px;
-  margin: 0 auto; /* center */
-  gap: 20px;
-  padding: 0 20px; /* left & right spacing */
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+  gap: 30px; /* Space between the columns */
 }
 
-/* Logo section */
-.logoSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* === Column 1: Logo and Socials === */
+.logoAndSocials {
+  flex: 1; /* Allow this column to grow */
+  min-width: 200px; /* Ensure it has a minimum width before wrapping */
 }
 
-.logoImg {
-  height: 16px;
+.logoImage {
+  /* Set a fixed height for the logo image */
+  height: 30px;
   width: auto;
-  margin-bottom: 15px;
-}
-
-/* Useful Links */
-.linksSection,
-.contactSection,
-.socialSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 14px;
-}
-/* Footer headings (solid white for emphasis) */
-.linksSection h4,
-.contactSection h4,
-.socialSection h4 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #ffffff; /* solid white */
-}
-
-/* Links */
-.linksSection ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-}
-
-.linksSection li {
-  margin-bottom: 8px;
-}
-
-.link {
-  color: rgba(255, 255, 255, 0.7); /* slightly muted white */
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.link:hover {
-  color: #ff7f50; /* highlight on hover */
-}
-
-/* Contact info */
-.contactSection p {
-  margin: 5px 0;
-  color: rgba(255, 255, 255, 0.7); /* slightly muted white */
-}
-
-/* Social section */
-.socialSection h4 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .socialIcons {
   display: flex;
-  gap: 20px;
-  font-size: 1.5rem;
+  gap: 15px; /* Space between social icons */
 }
 
-.socialIcons a {
-  color: rgba(255, 255, 255, 0.7); /* slightly muted white */
+.socialIcon {
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.socialIcon:hover {
+  background-color: #5cb85c; /* Example hover color */
+  border-color: #5cb85c;
+}
+
+/* === Column 2 & 3: Sections === */
+.footerSection {
+  flex: 1;
+  min-width: 150px; /* Ensure columns don't get too small */
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Links and Contact Text */
+.footerLink,
+.contactText {
+  color: #c0c0c0; /* Slightly lighter white/gray for body text */
+  text-decoration: none;
+  display: block; /* Makes links take up their own line */
+  margin-bottom: 8px;
+  font-size: 14px;
   transition: color 0.2s;
 }
 
-.socialIcons a:hover {
-  color: #ff7f50; /* highlight on hover */
+.footerLink:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
-/* Footer bottom text */
-.footerBottom {
-  text-align: center;
-  margin-top: 20px;
-  border-top: 1px solid #333;
-  padding-top: 10px;
-  font-size: 0.9rem;
-}
-
-/* Responsive for mobile */
-@media (max-width: 768px) {
-  .footerContainer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 10px;
+/* Responsive adjustment for mobile screens */
+@media (max-width: 600px) {
+  .footerContent {
+    flex-direction: column; /* Stack columns vertically */
+    gap: 30px;
   }
 
-  .logoSection,
-  .linksSection,
-  .contactSection,
-  .socialSection {
-    flex: 1 1 100%;
-    align-items: center;
-  }
-
-  .socialIcons {
-    justify-content: center;
+  .logoAndSocials {
+    min-width: 100%;
+    margin-bottom: 10px;
   }
 }

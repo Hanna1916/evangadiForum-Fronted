@@ -1,75 +1,92 @@
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import styles from "./Footer.module.css";
-import footerlogo from "../../assets/footerlogo.png";
+
+// Assuming the logo is available here (as per previous context)
+import EvangadiLogo from "../../assets/footerlogo.png";
+// Assuming you have SVG or font-awesome icons for socials (placeholders used here)
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
+    // 1. Component Structure
     <footer className={styles.footer}>
-      <div className={styles.footerContainer}>
-        {/* Social + Logo Section */}
-        <div className={styles.socialSection}>
-          <img
-            src={footerlogo}
-            alt="Evangadi Forum Logo"
-            className={styles.logoImg}
-          />
+      <div className={styles.footerContent}>
+        {/* === Column 1: Logo and Socials === */}
+        <div className={styles.logoAndSocials}>
+          <Link to="/" className={styles.logoLink}>
+            <img
+              src={EvangadiLogo}
+              alt="Evangadi Forum Logo"
+              className={styles.logoImage}
+            />
+          </Link>
+
           <div className={styles.socialIcons}>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
+              className={styles.socialIcon}
             >
               <FaFacebookF />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
+              className={styles.socialIcon}
             >
               <FaInstagram />
             </a>
             <a
-              href="https://youtube.com"
+              href="https://www.youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
+              className={styles.socialIcon}
             >
               <FaYoutube />
             </a>
           </div>
         </div>
 
-        {/* Useful Links */}
-        <div className={styles.linksSection}>
-          <h4>Useful Links</h4>
-          <ul>
+        {/* === Column 2: Useful Links === */}
+        <div className={styles.footerSection}>
+          <h4 className={styles.sectionTitle}>Useful Link</h4>
+          <ul className={styles.linkList}>
             <li>
-              <Link to="/about" className={styles.link}>
-                How It Works
+              <Link to="/detail" className={styles.footerLink}>
+                How it works
               </Link>
             </li>
             <li>
-              <Link to="/terms" className={styles.link}>
+              <Link to="/terms" className={styles.footerLink}>
                 Terms of Service
               </Link>
             </li>
             <li>
-              <Link to="/privacy" className={styles.link}>
-                Privacy Policy
+              <Link to="/privacy" className={styles.footerLink}>
+                Privacy policy
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Contact Info */}
-        <div className={styles.contactSection}>
-          <h4>Contact Info</h4>
-          <p>Evangadi Networks</p>
-          <p>support@evangadi.com</p>
-          <p>+1-202-386-2702</p>
+        {/* === Column 3: Contact Info === */}
+        <div className={styles.footerSection}>
+          <h4 className={styles.sectionTitle}>Contact Info</h4>
+          <p className={styles.contactText}>Evangadi Networks</p>
+          <p className={styles.contactText}>
+            <a href="mailto:support@evangadi.com" className={styles.footerLink}>
+              support@evangadi.com
+            </a>
+          </p>
+          <p className={styles.contactText}>
+            <a href="tel:+12023862702" className={styles.footerLink}>
+              +1 202-386-2702
+            </a>
+          </p>
         </div>
       </div>
-
     </footer>
   );
 };

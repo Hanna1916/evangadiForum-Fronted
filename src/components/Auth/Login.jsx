@@ -25,14 +25,25 @@ const Login = () => {
     }
 
     try {
+      console.log("🔄 Attempting login with:", { email, password: "***" });
+
       const res = await loginUser({ email, password });
-      const { token, username, userid } = res.data;
+      console.log("✅ Login response:", res.data);
+
+      const { token, user } = res.data;
+
+      // Extract username and userid from user object
+      const username = user?.username || user?.user_name || "";
+      const userid = user?.user_id || user?.id || "";
 
       setAuthToken(token);
       login(token, username, userid);
 
       navigate("/home");
     } catch (err) {
+      console.error("❌ Login error:", err);
+      console.error("📡 Error response:", err.response?.data);
+
       // Handle API errors gracefully
       if (err.response) {
         setError(err.response.data.message || "Login failed. Try again.");
@@ -47,7 +58,7 @@ const Login = () => {
       <div className={styles.signupContainer}>
         <h1 className={styles.mainTitle}>Login to your account</h1>
         <h3 className={styles.subTitle}>
-          Don’t have an account?{" "}
+          Don't have an account?{" "}
           <button
             onClick={() => navigate("/auth/signup")}
             className={styles.yellowButtonSmall}
@@ -63,6 +74,7 @@ const Login = () => {
             placeholder="Enter your email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
           <input
             type="password"
@@ -70,6 +82,7 @@ const Login = () => {
             placeholder="Enter your password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
 
           {error && <p className={styles.error}>{error}</p>}

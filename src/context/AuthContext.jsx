@@ -1,16 +1,17 @@
 import { createContext, useState, useEffect } from "react";
-import api, { setAuthToken } from "../services/api";
+import api, { setAuthToken } from "../services/api.js";
 
 export const AuthContext = createContext();
-
+// In your AuthContext.jsx
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [loading, setLoading] = useState(true);
 
-  // Attach token to API instance whenever it changes
+  // ✅ CRITICAL: Set token in axios headers whenever token changes
   useEffect(() => {
-    setAuthToken(token || null);
+    console.log("🔐 Setting auth token in axios:", token ? "Yes" : "No");
+    setAuthToken(token);
   }, [token]);
 
   // Check user on app start
@@ -21,8 +22,11 @@ export const AuthProvider = ({ children }) => {
         return;
       }
       try {
-        const res = await api.get("/user/checkUser");
-        setUser({ username: res.data.username, userid: res.data.userid });
+        const res = await api.get("/api/user/checkUser");
+        const payload = res.data?.user || res.data || {};
+        const username = payload.username || "";
+        const userid = payload.user_id || payload.id || "";
+        setUser({ username, userid });
       } catch (err) {
         console.error("User check failed:", err);
         logout();
@@ -34,8 +38,10 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = (token, username, userid) => {
+    console.log("🔐 Login - setting token:", token);
     setToken(token);
     localStorage.setItem("token", token);
+    // setAuthToken(token) is automatically called by the useEffect above
     setUser({ username, userid });
   };
 
@@ -43,7 +49,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setToken("");
     localStorage.removeItem("token");
-    setAuthToken(null);
+    // setAuthToken(null) is automatically called by the useEffect above
   };
 
   return (

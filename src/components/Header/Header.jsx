@@ -48,7 +48,7 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to="/about"
+            to="/detail"
             className={styles.link}
             onClick={() => setMenuOpen(false)}
           >
@@ -65,9 +65,7 @@ const Header = () => {
             </Link>
           ) : (
             <>
-              <span className={styles.welcomeText}>
-               {user.username}
-              </span>
+             
               <button onClick={handleLogout} className={styles.logoutBtn}>
                 LOG OUT
               </button>
